@@ -1,0 +1,12 @@
+{% for product in products %}
+    <a class = 'product-container' href = '#'>
+        <div class = 'product-card'>
+            <br>
+            <img src = '{{product.ProductAvt.url }}' class = 'product-logo'></img>
+            <p class = 'favor text'>{{product.TeaTypeFavor}}</p>
+            <p class = 'name text'>{{product.name}}</p>
+            <p class = 'price-for-100 text'>Цена за 100г: {{product.price}}р</p>
+            <button data-ProductId = '{{product.id}}' data-link = '{% url "cart:cart_add" product.id%}' class = 'cart add_cart' id = 'ajax_cart'  onclick="return false"><i class="fas fa-shopping-bag"></i> В корзину</button>
+        </div>
+    </a>
+{% endfor %}

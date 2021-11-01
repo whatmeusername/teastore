@@ -1,5 +1,17 @@
 {% extends 'main/layout.html' %}
+{% load static %}
+
+{% block settings %}
+    <link rel="stylesheet" href="{% static 'main/css/home.css' %}">
+{% endblock %}
 
 {% block body %}
-    <p>Hello1</p>
+    <div class = 'main-container'>
+        <img class = 'main-image' src = 'https://get.pxhere.com/photo/landscape-field-hill-flower-valley-green-soil-agriculture-highland-terrace-grassland-vegetation-plantation-plateau-india-rural-area-paddy-field-tea-plantation-hill-station-tea-garden-mountainous-landforms-1217816.jpg'>
+    </div>
+    {{form.email}}
+    {{form.password}}
+    {{type}}
+    HELLO
+    
 {% endblock %}

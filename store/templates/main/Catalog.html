@@ -1,0 +1,124 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+
+{% block settings %}
+    <link rel="stylesheet" href="{% static 'main/css/catalog.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class = 'main-container'>
+
+
+        <div class = 'sticky-block'>
+            <div class = 'left-filters'>
+                <div class = 'filter-block'>
+                    <h2 class = 'filter-header'>Сортировать по</h2>
+                <form method = 'GET' id = 'filter-form' data-typeone = '{{ URLPARAMATERS.type1 }}', data-typetwo = '{{ URLPARAMATERS.type2 }}'>
+
+                        <div class = 'favor-category category'>
+                            <h4 class = 'category_header'>Тип вкуса</h4>
+                            {% for favor in CategoriesFavor %}
+                                <div class = 'category-box'>
+                                    <input type="checkbox" id ='checkfavor' class = 'check' name = 'favor' value = '{{favor}}'>
+                                    <label for = '{{favor}}' class = 'check-label'>{{favor}}</label>
+                                </div>
+                                <br>
+                            {% endfor %}
+                        </div>
+
+                        <br>
+
+                        <div class = 'country-category category'>
+                            <h4 class = 'category_header'>Выращено в</h4>
+                            {% for country in CategoriesCountry %}
+                                <div class = 'category-box'>
+                                    <input type="checkbox" id ='checkfavor' name = 'country' class = 'check' value = '{{country}}'>
+                                    <label for = '{{country}}' class = 'check-label'>{{country}}</label>
+                                </div>
+                                <br>
+                            {% endfor %}
+                        </div>
+
+                        <br>
+
+                        <div class = 'manufacturer-category category'>
+                            <h4 class = 'category_header'>Производитель</h4>
+                            {% for manufacturer in CategoriesMan %}
+                                <div class = 'category-box'>
+                                    <input type="checkbox" id ='checkfavor' name = 'manufacturer' class = 'check' value = '{{manufacturer}}'>
+                                    <label for = '{{manufacturer}}' class = 'check-label'>{{manufacturer}}</label>
+                                </div>
+                                <br>
+                            {% endfor %}
+                        </div>
+
+                        <br>
+
+                        <div class = 'price-filter category'>
+                            <h4 class = 'category_header'>Цена</h4>
+                            {{ price_form.price_from }}
+                            <label for ='form-price-to class' class = 'price-label'>-</label>
+                            {{ price_form.price_to }}
+                        </div>
+
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+
+        <div class  = 'right-catalog'>
+            {% for product in products %}
+                <a class = 'product-container' href = '#'>
+                    <div class = 'product-card'>
+                        <br>
+                        <img src = '{{product.ProductAvt.url }}' class = 'product-logo'></img>
+                        <p class = 'favor text'>{{product.TeaTypeFavor}}</p>
+                        <p class = 'name text'>{{product.name}}</p>
+                        <p class = 'price-for-100 text'>Цена за 100г: {{product.price}}р</p>
+                        <button data-ProductId = '{{product.id}}' data-link = '{% url "cart:cart_add" product.id%}' class = 'add_cart cart' id = 'ajax_cart'  onclick="return false"><i class="fas fa-shopping-bag"></i> В корзину</button>
+                    </div>
+                </a>
+            {% endfor %}
+
+            <br>
+
+            {% if products.has_other_pages %}
+                <div class = 'paginator'>
+
+                    <div class = 'paginator-block'>
+                        <ul>
+
+                        {% if products.has_previous %}
+                            <li class = 'paginator-back paginator-page'><a href="?page={{ products.previous_page_number }}"><</a></li>
+                        {% endif %}
+
+                        {% if products.paginator.num_pages > 3%}
+                            {% for page in products.paginator.page_range%}
+                                {% if products.number == page %}
+                                    <li class = 'paginator-page-here paginator-page'><p>{{page}}</p></li>
+                                {% elif page >= products.number|add:-1 and page <= products.number|add:1 %}
+                                    <li class = 'paginator-pages paginator-page'><a href = "?page={{page}}">{{page}}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+
+                        {% if products.has_next %}
+                            <li class = 'paginator-next paginator-page'><a href="?page={{ products.next_page_number }}">></a></li>
+                        {% endif %}
+
+                        </ul>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <script src="{% static 'main/js/CartAjax.js' %}" ></script>
+        <script src="{% static 'main/js/AjaxFilter.js' %}" ></script>
+
+
+{% endblock %}
