@@ -5,11 +5,11 @@ from django.conf import settings
 class Cart():
 
 
-    def __init__(self, request):
+    def __init__(self, request, obj = {}):
         self.session = request.session
         cart = self.session.get(settings.CART_SESSION_ID)
         if not cart:
-            cart = self.session[settings.CART_SESSION_ID] = {}
+            cart = self.session[settings.CART_SESSION_ID] = obj
         self.cart = cart
 
     def add(self, product):
@@ -68,3 +68,10 @@ class Cart():
     def save(self):
         self.session[settings.CART_SESSION_ID] = self.cart
         self.session.modified = True
+
+    def auth_save(self):
+        cart = self.session.get(settings.CART_SESSION_ID)
+        if not cart:
+            return {}
+        else:
+            return self.cart

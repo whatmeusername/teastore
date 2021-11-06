@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser , BaseUserManager , PermissionsMixin
+import datetime
 
 
 
@@ -33,6 +34,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     Address = models.CharField(max_length= 200, verbose_name = 'Адрес')
     PhoneNumber = models.DecimalField(max_digits = 25, verbose_name = 'Номер телефона', decimal_places = 20, null= True)
     is_staff = models.BooleanField(default=False)
+    #join_date = models.DateField(default = datetime.datetime.now)
     REQUIRED_FIELDS = ['FirstName', 'LastName', 'password']
     USERNAME_FIELD = 'email'
 

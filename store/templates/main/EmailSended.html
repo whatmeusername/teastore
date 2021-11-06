@@ -1,0 +1,25 @@
+
+
+
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block settings %}
+    <link rel="stylesheet" href="{% static 'main/css/EmailSend.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class = 'main-container'>
+        <div class = 'email-container'>
+            <p class = 'email-sended'>Ссылка на потверждение аккаунта отправлена на вашу почту</p>
+            <p class = 'email-not-sended-text'>Не пришла ссылка на активацию?</p>
+            <button class = 'btn btn-success btn-email' data-time = {{time}}></button>
+            <p class = 'success-text'></p>
+        </div>
+    </div>
+    
+    <script src="{% static 'main/js/EmailResender.js' %}"></script>
+    
+    
+{% endblock %}

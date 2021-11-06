@@ -21,23 +21,40 @@
 </head>
 <body>
     <nav class = "navbar-1">
-        <div class = "logo left">
+        <div class = "logo-left navbar-block">
             <a class = 'logo-link' href = '/'><img class = 'logo-image' src = "{% static 'main/images/green-tea.png'%}"></img></a>
         </div>
-        <div class = "right-objects">
+        <div class = "right-objects navbar-block">
             {% if user.is_authenticated %}
-                <a class = 'profile' href = '#'><i class="fa fa-user" aria-hidden="true"></i> {{ user.FirstName }} {{ user.LastName }}</a>
+            <div class = 'dropdown-user right-object'>
+                <span class = 'profile'><i class="fa fa-user" aria-hidden="true"></i></span>
+                <div class='dropdown-content-user'>
+                    <div class = 'user-info'>
+                        <div class = 'user-info-block'>
+                            <p class = 'user-name user-text'>{{request.user.FirstName}} {{request.user.LastName}}</p>
+                            <p class = 'user-email user-text'>{{request.user.email}}</p>
+                        </div>
+                    </div>
+                    <a class = 'user-item-block' href = '#'>
+                        <span class = 'user-item'>Профиль</span>
+                    </a>
+                    <a class = 'user-item-block' href = '{% url "user:logout" %}'>
+                        <span class = 'user-item'>Выйти</span>
+                    </a>
+                </div>
+                <script src = '{% static "main/js/LayOut/UserButton.js" %}'></script>
+            </div>
             {% else %}
-                <a class = 'profile' href = '#'><i class="fa fa-user" aria-hidden="true"></i> войти</a>
+                <a class = 'profile right-object' href = '{% url "user:login" %}'><i class="fa fa-user" aria-hidden="true"></i> войти</a>
             {% endif %}
-            <a class = 'cart-total'  href = '#'><i class="fa fa-shopping-cart" aria-hidden="true"></i> корзина {{cart.lenght}}</a>
+            <a class = 'cart-total right-object'  href = '#'><i class="fa fa-shopping-cart" aria-hidden="true"></i> корзина {{cart.lenght}}</a>
         </div>
     </nav>
     <nav class = "navbar-2">
         <div class = 'container'>
             {% for key, value in type.items %}
-                <div class="dropdown">
 
+                <div class="dropdown">
                     <span class = 'dropdown-toggle'>{{key}}</span>
                     <div class="dropdown-content">
                         {% for type in value %}
@@ -50,6 +67,7 @@
             {% endfor %}
         </div>
     </nav>
+
     <main>
         {% block body %}
         {% endblock %}

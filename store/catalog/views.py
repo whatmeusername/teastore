@@ -116,6 +116,8 @@ def FilterCatalog(request):
         if len(manufacturers) > 0:
             products = products.filter(manufacturer__manufacturer__in = manufacturers)
 
-        render = render_to_string('main/renders_for_ajax/Product_AJAX.html', {'products': products})
+        render = render_to_string('renders_for_ajax/Product_AJAX.html', {'products': products})
+
         return JsonResponse({'render': render})
-    return HttpResponse('NO')
+        
+    return HttpResponse('')

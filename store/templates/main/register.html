@@ -1,0 +1,52 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block settings %}
+    <link rel="stylesheet" href="{% static 'main/css/register.css' %}">
+    <link rel="stylesheet" href="{% static 'main/css/EmailSend.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class = 'main-container'>
+        <div class = 'register-container'>
+            <img class = 'logo-register' src = "{% static 'main/images/green-tea-icon.png'%}"></img>
+            <p class = 'register-header'>Регистрация</p>
+            <form method = 'POST' id = 'register-form'>
+                {% csrf_token %}
+
+                <p class = 'field-header'>Почта</p>
+                {{form.email}}
+                <p class = 'error-field' id = 'email-field-error'></p>
+
+                <p class = 'field-header'>Имя</p>
+                {{form.FirstName}}
+                <p class = 'error-field' id = 'FirstName-field-error'></p>
+
+                <p class = 'field-header'>фамилия</p>
+                {{form.LastName}}
+                <p class = 'error-field' id = 'LastName-field-error'></p>
+
+                <p class = 'field-header margin-top'>Пароль</p>
+                {{form.password}}
+                <p class = 'error-field' id = 'password-field-error'></p>
+
+                <p class = 'field-header margin-top'>Пароль (еще раз)</p>
+                {{form.password_repeat}}
+                <p class = 'error-field' id = 'password_repeat-field-error'></p>
+
+                <br>
+                <br>
+                <button class = 'btn btn-success submit-btn' type = 'submit' id = 'submit-btn'>Зарегистрироваться</button>
+            </form>
+            <a class = 'login-link' href = '{% url "user:login" %}'>Уже есть аккаунт?</a>
+        </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    
+    <script src="{% static 'main/js/RegisterAjax.js' %}"></script>
+    
+    
+{% endblock %}

@@ -1,0 +1,43 @@
+.main-container {
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+}
+
+.email-container{
+    margin: 0 auto;
+    margin-top: 30vh;
+    text-align: center;
+    width: 20%;
+    padding: 20px;
+    border-radius: 4px;
+    background: rgba(245, 242, 242, 0.7);
+    width: 500px;
+}
+
+.email-sended{
+    color: rgb(30, 107, 30);
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.email-not-sended-text.time-before-sent {
+    color: rgb(104, 104, 104);
+    font-size: 18px;
+    font-weight: 500;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.btn-email {
+    width: 80%;
+    font-size: 16px;
+    margin-top: -15px;
+}
+
+.success-text{
+    font-size: 16px;
+    color: rgba(71, 71, 71);
+    font-family: Arial, Helvetica, sans-serif
+}

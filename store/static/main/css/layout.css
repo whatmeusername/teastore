@@ -13,7 +13,7 @@ body {
     background: rgba(245, 242, 242, 0.7)
 }
 
-.navbar-1 div {
+.navbar-1 .navbar-block {
     display: inline-block;
     line-height: 50px;
 }
@@ -28,7 +28,7 @@ body {
     margin-right: 50px;
 }
 
-.right-objects a{
+.right-objects .right-object{
     display: inline-block;
     margin: 0 10px;
     color:rgba(175, 175, 175, 0.7);
@@ -92,7 +92,7 @@ body {
 }
 
 
-.dropdown-content a{
+.dropdown-content .right-object{
     display: inline-block;
 }
 
@@ -120,8 +120,89 @@ body {
     float: left;
 }
 
+/* ----- USER DROPDOWN -------- */
+
+.dropdown-user .active{
+    display: block;
+}
+
+.dropdown-content-user{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    z-index: 20;
+    margin-top: 0px;
+    margin-left: -180px;
+    width: 200px;
+    border-radius: 4px;
+    box-shadow: 0px 8px 16px 0px rgba(172, 172, 172);
+}
+
+.dropdown-user {
+    position: relative;
+}
+
+.user-info {
+    width: 100%;
+    background-color: rgba(78, 180, 47, 0.7);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+}
+
+.user-info-block{
+    width: 180px;
+    margin-left: 10px;
+    color: rgb(255, 255, 255);
+}
 
 
+.user-text{
+    height: 20px;
+    margin: 0px;
+    padding: 0px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+.user-name {
+    font-size: 15px;
+    line-height: 25px;
+}
+
+.user-email{
+    font-size: 12px;
+    line-height: 15px;
+    color: rgb(255, 255, 255, 0.8);
+}
+
+
+.user-item-block {
+    width: 100%;
+    height: 50px;
+    color: rgb(59, 59, 59);
+    display: block;
+    text-decoration: none;
+}
+
+.user-item-block:hover{
+    background-color: rgba(172, 172, 172, 0.1);
+    color: black;
+    overflow: hidden;
+    background-clip:border-box;
+}
+
+.user-item-block .user-item{
+    padding-left: 10px;
+    width: 100%;
+    font-size: 14px;
+    overflow: hidden;
+    line-height: 0px;
+}
+
+/* ---CATEGORY --- */
 .image-link {
     background: rgb(245, 245, 245);
     width: 50px;

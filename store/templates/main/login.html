@@ -1,0 +1,33 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+
+{% block settings %}
+    <link rel="stylesheet" href="{% static 'main/css/login.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+{% endblock %}
+
+{% block body %}
+    <div class = 'main-container'>
+        <div class = 'login-container'>
+            <img class = 'logo-login' src = "{% static 'main/images/green-tea-icon.png'%}"></img>
+            <p class = 'login-header'>Вход</p>
+            <form method = 'POST' id = 'Login-form'>
+                {% csrf_token %}
+                <p class = 'field-header'>Почта</p>
+                {{form.email}}
+                <p class = 'error-field' id = 'email-field-error'></p>
+                <p class = 'field-header margin-top'>Пароль</p>
+                {{form.password}}
+                <p class = 'error-field' id = 'password-field-error'></p>
+                <br>
+                <br>
+                <button class = 'btn btn-success submit-btn' type = 'submit' id = 'submit-btn'>Войти</button>
+            </form>
+            <a class = 'register-link' href = '{% url "user:register" %}'>Нету аккаунта?</a>
+        </div>
+    </div>
+    
+    <script src="{% static 'main/js/LoginAjax.js' %}"></script>
+    
+    
+{% endblock %}
